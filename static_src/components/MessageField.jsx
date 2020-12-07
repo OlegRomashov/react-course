@@ -4,8 +4,8 @@ import Message from './Message'
 export default class MessageField extends React.Component {
   state = {
     messages: [
-      { name: 'robot', content: 'Привет!' },
-      { name: 'robot', content: 'Как дела?' },
+      { name: 'robot', content: 'Привет !' },
+      { name: 'robot', content: 'Как дела ?' },
     ],
   }
   handleClick = () => {
@@ -13,8 +13,8 @@ export default class MessageField extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.state.messages.length % 2 === 1) {
-      setTimeout(() =>
+    if (this.state.messages[this.state.messages.length - 1].name === 'I') {
+      const timeout = setTimeout(() =>
           this.setState(
             {
               messages: [...this.state.messages, { name: 'robot', content: 'Не приставай ко мне, я робот!' }],
@@ -23,6 +23,9 @@ export default class MessageField extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timeout)
+  }
 
   render() {
     const messageElements = this.state.messages.map((message, index) => (
