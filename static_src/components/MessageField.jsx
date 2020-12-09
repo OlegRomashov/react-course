@@ -3,22 +3,55 @@ import Message from './Message'
 import './styles/styles.css'
 
 export default class MessageField extends React.Component {
+  constructor(props) {
+    super(props)
+    this.textInput = React.createRef()
+  }
+
   state = {
     messages: [
-      { name: 'bot', content: 'Привет !' },
-      { name: 'bot', content: 'Как дела ?' },
+      { sender: 'bot', content: 'Привет !' },
+      { sender: 'bot', content: 'Как дела ?' },
     ],
+    input: '',
   }
-  handleClick = () => {
-    this.setState({ messages: [...this.state.messages, { name: 'me', content: 'Нормально!' }] })
+
+  handleClick = (message) => {
+    this.sendMessage(message)
+  }
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  handleKeyUp = (event, message) => {
+    if (event.keyCode === 13) { // Enter
+      this.setState({
+        messages: [...this.state.messages, {
+          content: message,
+          sender: 'me',
+        }],
+      })
+    }
+  }
+
+  sendMessage = (message) => {
+    this.setState({
+      messages: [...this.state.messages, { content: message, sender: 'me' }],
+      input: '',
+    })
+  }
+
+  componentDidMount() {
+    this.textInput.current.focus()
   }
 
   componentDidUpdate() {
-    if (this.state.messages[this.state.messages.length - 1].name === 'me') {
+    if (this.state.messages[this.state.messages.length - 1].sender === 'me') {
       const timeout = setTimeout(() =>
           this.setState(
             {
-              messages: [...this.state.messages, { name: 'bot', content: 'Не приставай ко мне, я робот!' }],
+              messages: [...this.state.messages, { sender: 'bot', content: 'Не приставай ко мне, я робот!' }],
             }),
         1000)
     }
@@ -30,12 +63,20 @@ export default class MessageField extends React.Component {
 
   render() {
     const messageElements = this.state.messages.map((message, index) => (
-      <Message key={index} name={message.name} content={message.content} />))
+      <Message key={index} sender={message.sender} content={message.content} />))
     return <div className='layout'>
       <div className='message-field'>
         {messageElements}
       </div>
-      <button onClick={this.handleClick}> Отправить сообщение</button>
+      <input className='input'
+             ref={this.textInput}
+             name='input'
+             onChange={this.handleChange}
+             value={this.state.input}
+             onKeyUp={(event) => this.handleKeyUp(event, this.state.input)} />
+      <button className='button'
+              onClick={() => this.handleClick(this.state.input)}>Отправить сообщение
+      </button>
     </div>
   }
 
