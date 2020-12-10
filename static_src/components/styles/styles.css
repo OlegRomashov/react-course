@@ -1,16 +1,26 @@
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+.body {
+    display: flex;
+    height: 500px;
+}
 .message-field {
     display: flex;
     flex-direction: column;
     background-color: #e2e2e2;
     height: 50%;
-    width: 100%;
-    padding: 20px;
+    width: 70%;
     overflow-y: scroll;
 }
 
 .layout {
     height: 100%;
-    width: 50%;
+    width: 100%;
     margin: auto;
     display: flex;
     align-items: center;
@@ -28,4 +38,32 @@
 
 .message-sender {
     color: gray;
+}
+
+.textField {
+    width: 100%;
+    display: flex;
+}
+
+.header {
+    display: block;
+    width: 100%;
+    height: 70px;
+    background-color: lightblue;
+    align-content: center;
+}
+
+.chatList {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgrey;
+    height: 100%;
+    width: 30%;
+    padding: 20px;
+}
+
+.input {
+    width: 100%;
+    display: flex;
+    margin-left: 300px;
 }

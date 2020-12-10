@@ -30,7 +30,8 @@ export default class MessageField extends React.Component {
     if (event.keyCode === 13) { // Enter
       this.setState({
         messages: [...this.state.messages, {
-          content: message,
+          content: this.sendMessage(message),//если указано "content: message",
+                                            // то не очищается поле input при нажатии enter
           sender: 'me',
         }],
       })
@@ -64,13 +65,15 @@ export default class MessageField extends React.Component {
   }
 
   render() {
-    const messageElements = this.state.messages.map((message, index) => (
-      <Message key={index} sender={message.sender} content={message.content} />))
+    const messageElements = this.state.messages
+      .map((message, index) => (
+        <Message key={index} sender={message.sender} content={message.content} />),
+      )
     return <div className='layout'>
       <div className='message-field'>
         {messageElements}
       </div>
-      <div style = { { width: '100%' , display: 'flex' } }>
+      <div className='input'>
         <TextField
           ref={this.textInput}
           name='input'
