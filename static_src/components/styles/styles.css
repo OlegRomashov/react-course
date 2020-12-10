@@ -9,6 +9,7 @@ body {
     display: flex;
     height: 500px;
 }
+
 .message-field {
     display: flex;
     flex-direction: column;

@@ -31,7 +31,7 @@ export default class MessageField extends React.Component {
       this.setState({
         messages: [...this.state.messages, {
           content: this.sendMessage(message),//если указано "content: message",
-                                            // то не очищается поле input при нажатии enter
+          // то не очищается поле input при нажатии enter
           sender: 'me',
         }],
       })
