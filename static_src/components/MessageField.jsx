@@ -27,20 +27,17 @@ export default class MessageField extends React.Component {
   }
 
   handleKeyUp = (event, message) => {
-    if (event.keyCode === 13) { // Enter
-      this.setState({
-        messages: [...this.state.messages, {
-          content: this.sendMessage(message),//если указано "content: message",
-          // то не очищается поле input при нажатии enter
-          sender: 'me',
-        }],
-      })
+    if (event.keyCode === 13) {
+      this.sendMessage(message)
     }
   }
 
   sendMessage = (message) => {
     this.setState({
-      messages: [...this.state.messages, { content: message, sender: 'me' }],
+      messages: [...this.state.messages, {
+        content: message,
+        sender: 'me',
+      }],
       input: '',
     })
   }
