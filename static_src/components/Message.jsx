@@ -8,11 +8,11 @@ export default class Message extends React.Component {
   }
 
   render() {
-    return (<div
-      className="message"
-      style={{ alignSelf: this.props.sender === 'bot' ? 'flex-start' : 'flex-end' }}>
-      <strong> {this.props.sender} : </strong>
-      {this.props.content}
-    </div>)
+    return (
+      <div className={this.props.sender === 'bot' ? 'messageAll' : 'messageMe'}>
+        <strong> {this.props.sender} : </strong>
+        {this.props.content}
+      </div>
+    )
   }
 }

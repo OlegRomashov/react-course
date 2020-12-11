@@ -18,24 +18,24 @@ export default class MessageField extends React.Component {
     input: '',
   }
 
-  handleClick = (message) => {
-    this.sendMessage(message)
+  handleClick = () => {
+    this.sendMessage()
   }
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleKeyUp = (event, message) => {
+  handleKeyUp = (event) => {
     if (event.keyCode === 13) {
-      this.sendMessage(message)
+      this.sendMessage()
     }
   }
 
-  sendMessage = (message) => {
+  sendMessage = () => {
     this.setState({
       messages: [...this.state.messages, {
-        content: message,
+        content: this.state.input,
         sender: 'me',
       }],
       input: '',
@@ -46,8 +46,9 @@ export default class MessageField extends React.Component {
     this.textInput.current.focus()
   }
 
-  componentDidUpdate() {
-    if (this.state.messages[this.state.messages.length - 1].sender === 'me') {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.messages.length < this.state.messages.length &&
+      this.state.messages[this.state.messages.length - 1].sender === 'me') {
       const timeout = setTimeout(() =>
           this.setState(
             {
@@ -76,9 +77,11 @@ export default class MessageField extends React.Component {
           name='input'
           onChange={this.handleChange}
           value={this.state.input}
-          onKeyUp={(event) => this.handleKeyUp(event, this.state.input)} />
+          onKeyUp={(event) => this.handleKeyUp(event)}
+        />
         <FloatingActionButton
-          onClick={() => this.handleClick(this.state.input)}>
+          onClick={this.handleClick}
+        >
           <SendIcon />
         </FloatingActionButton>
       </div>
