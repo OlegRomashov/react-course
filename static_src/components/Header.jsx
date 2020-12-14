@@ -1,11 +1,24 @@
 import React from 'react'
-import AppBar from 'material-ui/AppBar'
+import PropTypes from 'prop-types'
+import Profile from '../profile/Profile'
 
 export default class Header extends React.Component {
+  static propTypes = {
+    chatId: PropTypes.number,
+  }
+
+  static defaultProps = {
+    chatId: 1,
+  }
+
   render() {
-    return <AppBar
-      title="Title"
-      iconClassNameRight="muidocs-icon-navigation-expand-more">
-    </AppBar>
+    return (
+      <div className='header'>
+        <Profile />
+        <span style={{ fontSize: '20px' }}>
+          Чат {this.props.chatId}
+        </span>
+      </div>
+    )
   }
 }
