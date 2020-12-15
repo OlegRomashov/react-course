@@ -3,7 +3,7 @@ import React from 'react'
 export default class Profile extends React.Component {
   render () {
     return (
-      <span>Профиль </span>
+      <span style={{ fontSize: '18px' }}>Профиль </span>
     )
   }
 }

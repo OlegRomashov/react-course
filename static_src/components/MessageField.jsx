@@ -21,7 +21,7 @@ export default class MessageField extends React.Component {
       2: { title: 'Чат 2', messageList: [2] },
       3: { title: 'Чат 3', messageList: [3] },
       4: { title: 'Чат 4', messageList: [4] },
-      5: { title: 'Чат 3', messageList: [5] },
+      5: { title: 'Чат 5', messageList: [5] },
 
     },
     messages: {
@@ -90,11 +90,11 @@ export default class MessageField extends React.Component {
   render() {
     const { messages, chats } = this.state
     const { chatId } = this.props
-    const messageElements = chats [chatId].messageList.map((messageId, index) => (
+    const messageElements = chats[chatId].messageList.map((messageId, index) => (
       <Message
         key={index}
-        text={messages [messageId].text}
-        sender={messages [messageId].sender}
+        text={messages[messageId].text}
+        sender={messages[messageId].sender}
       />))
     return [
       <div key='messageElements' className="message-field">
