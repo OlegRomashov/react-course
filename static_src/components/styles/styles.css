@@ -5,10 +5,9 @@ body {
     line-height: 1.5;
 }
 
-.layout-canvas {
+.body {
     display: flex;
-    height: 100%;
-    margin-top: 2px;
+    height: 500px;
 }
 
 .message-field {
@@ -24,11 +23,12 @@ body {
 
 .layout {
     height: 100%;
-    width: 50%;
+    width: 100%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .messageAll {
@@ -51,7 +51,6 @@ body {
 
 .message-sender {
     color: gray;
-    font-size: 14px;
 }
 
 .textField {
@@ -68,6 +67,17 @@ body {
     padding-top: 15px;
 }
 
+.input {
+    width: 100%;
+    display: flex;
+    margin-left: 300px;
+}
+
+.layout-canvas {
+    display: flex;
+    height: 100%;
+}
+
 .layout-left-side {
     display: flex;
     flex-direction: column;
@@ -76,13 +86,8 @@ body {
     height: 100%;
     padding: 20px;
 }
+
 .layout-right-side {
     width: 70%;
     height: 500px;
-}
-
-.input {
-    width: 100%;
-    display: flex;
-    margin-left: 300px;
 }
