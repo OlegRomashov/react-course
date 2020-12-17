@@ -10,6 +10,7 @@ export default class Router extends React.Component {
         <Route exact path='/chat/:chatId/'
                render={ obj => <Layout chatId={Number(obj.match.params.chatId)} /> }
         />
+        {/*<Route render={() => <h1 style={{ color: 'red', textAlign: 'center'}}>404 not found</h1>}/>*/}
         <Redirect to={'/'}/>
       </Switch>
     )

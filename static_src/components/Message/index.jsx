@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './styles.css'
 
-export default class Message extends React.Component {
+export default class Index extends React.Component {
   static propTypes = {
     sender: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,

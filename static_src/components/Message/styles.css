@@ -1,0 +1,17 @@
+.messageAll {
+    background-color: lightblue;
+    align-self: flex-start;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    margin: 5px;
+}
+
+.messageMe {
+    background-color: lightblue;
+    align-self: flex-end;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    margin: 5px;
+}
