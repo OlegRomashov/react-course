@@ -20,13 +20,13 @@ class Layout extends React.Component {
   }
 
   state = {
-    chats: {
-      1: { title: 'Чат 1', messageList: [1] },
-      2: { title: 'Чат 2', messageList: [2] },
-      3: { title: 'Чат 3', messageList: [3] },
-      4: { title: 'Чат 4', messageList: [4] },
-      5: { title: 'Чат 5', messageList: [5] },
-    },
+    // chats: {
+    //   1: { title: 'Чат 1', messageList: [1] },
+    //   2: { title: 'Чат 2', messageList: [2] },
+    //   3: { title: 'Чат 3', messageList: [3] },
+    //   4: { title: 'Чат 4', messageList: [4] },
+    //   5: { title: 'Чат 5', messageList: [5] },
+    // },
     messages: {
       1: { text: 'Привет! я бот', sender: 'bot' },
       2: { text: 'Здравствуйте! как дела?', sender: 'bot' },
@@ -37,16 +37,16 @@ class Layout extends React.Component {
     input: '',
   }
 
-  addChat = (title) => {
-    const { chats } = this.state
-    const chatId = Object.keys(chats).length + 1
-    this.setState({
-      chats: {
-        ...chats,
-        [chatId]: { title: title, messageList: [] },
-      },
-    })
-  }
+  // addChat = (title) => {
+  //   const { chats } = this.state
+  //   const chatId = Object.keys(chats).length + 1
+  //   this.setState({
+  //     chats: {
+  //       ...chats,
+  //       [chatId]: { title: title, messageList: [] },
+  //     },
+  //   })
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     const { messages } = this.state
@@ -98,6 +98,6 @@ class Layout extends React.Component {
 }
 
 const mapStateToProps = ({}) => ({})
-const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage },
-  dispatch)
+const mapDispatchToProps =
+  dispatch => bindActionCreators({ sendMessage }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Layout)
