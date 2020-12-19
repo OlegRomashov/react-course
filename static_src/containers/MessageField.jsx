@@ -5,6 +5,7 @@ import connect from 'react-redux/es/connect/connect'
 import { TextField, FloatingActionButton } from 'material-ui'
 import SendIcon from 'material-ui/svg-icons/content/send'
 import Index from '../components/Message'
+import { sendMessage } from '../actions/messageActions'
 import './styles/styles.css'
 
 class MessageField extends React.Component {
@@ -24,9 +25,36 @@ class MessageField extends React.Component {
     input: '',
   }
 
+  sendMessage = (message, sender) => {
+    const { messages } = this.state
+    const { chatId } = this.props
+    const messageId = Object.keys(messages).length + 1
+    this.setState({
+      messages: {
+        ...messages,
+        [messageId]: { text: message, sender: sender },
+      },
+    })
+    this.sendMessage(messageId, message, sender, chatId)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { messages } = this.props
+    if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
+      Object.values(messages)[Object.values(messages).length - 1].sender
+      === 'me') {
+      const timeout = setTimeout(() =>
+        this.sendMessage('Не приставай ко мне, я робот!', 'bot'), 1000)
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout)
+  }
+
   handleSendMessage = (message, sender) => {
     if (this.state.input.length > 0 || sender === 'bot') {
-      this.props.sendMessage(message, sender)
+      this.sendMessage(message, sender)
     }
     if (sender === 'me') {
       this.setState({ input: '' })
@@ -83,6 +111,7 @@ class MessageField extends React.Component {
 
 const mapStateToProps = ({ chatReducer }) => ({
   chats: chatReducer.chats,
+  messages: chatReducer.messages,
 })
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({sendMessage}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(MessageField)

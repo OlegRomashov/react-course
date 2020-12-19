@@ -10,6 +10,13 @@ const initialStore = {
     4: { title: 'Чат 4', messageList: [4] },
     5: { title: 'Чат 5', messageList: [5] },
   },
+  messages: {
+    1: { text: 'Привет! я бот', sender: 'bot' },
+    2: { text: 'Здравствуйте! как дела?', sender: 'bot' },
+    3: { text: 'Привет! что нового?', sender: 'bot' },
+    4: { text: 'Здравствуйте! как у вас настроение?', sender: 'bot' },
+    5: { text: 'Привет! чё кислый такой?', sender: 'bot' },
+  },
 }
 
 export default function chatReducer(store = initialStore, action) {
